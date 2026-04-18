@@ -1,0 +1,84 @@
+/* === CONTENEDOR GENERAL === */
+.portal {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+  font-family: sans-serif;
+}
+
+.portal-title {
+  text-align: right;
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+/* === TARJETA DE NOTICIA === */
+.news-card {
+  margin-bottom: 1.5rem;
+  border: 1px solid #ccc;
+}
+
+/* === CABECERA (fecha + título) === */
+.news-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e8e8e8;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.news-title-header {
+  font-weight: bold;
+  color: #222;
+}
+
+/* === CUERPO DE LA NOTICIA === */
+.news-body {
+  padding: 1rem;
+  background-color: #fff;
+  text-align: justify;
+}
+
+.news-body h2 {
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin: 0 0 0.5rem;
+}
+
+.news-body h2 a {
+  color: #000;
+  font-weight: normal;
+  text-decoration: none;
+}
+
+.news-body h3 {
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 0 0 0.8rem;
+}
+
+.news-preview {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #333;
+  margin: 0;
+}
+
+/* === BOTÓN "LEER MÁS" === */
+.btn-leer-mas {
+  display: block;
+  margin-left: auto; /* empuja el botón a la derecha */
+  margin-top: 0.5rem;
+  background-color: #e8e8e8;
+  border: none;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.btn-leer-mas:hover {
+  background-color: #d0d0d0;
+}
