@@ -1,3 +1,4 @@
+import re
 from django.db import models
 
 class Video(models.Model):
@@ -18,7 +19,16 @@ class Video(models.Model):
     def titulo_sin_autor(self):
         if not self.titulo:
             return ""
-        return self.titulo.replace("José Luis Cava", "").strip()
+
+        autor_pattern = re.compile(
+            r"\s*(?:J\.?\s*L\.?|JL|Jos(?:é|e)(?:\s+L(?:uis)?)?)\s+Cava\.?\s*",
+            flags=re.IGNORECASE,
+        )
+
+        texto = autor_pattern.sub("", self.titulo)
+        texto = re.sub(r"\s*\.+$", "", texto).strip()
+        texto = re.sub(r"\s{2,}", " ", texto)
+        return texto
 
 
 class Resumen(models.Model):

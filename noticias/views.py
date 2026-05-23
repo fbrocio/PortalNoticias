@@ -9,5 +9,5 @@ def about(request):
     return HttpResponse("About")
 
 def portal(request):
-    videos = Video.objects.prefetch_related("resumen_set").all()
+    videos = Video.objects.prefetch_related("resumen_set").order_by('-fecha')
     return render(request, "portal.html", {"videos": videos})

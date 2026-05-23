@@ -2,31 +2,55 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <meta charset="UTF-8">
+  <title>Portal de noticias</title>
   <link rel="stylesheet" href="{% static 'noticias/styles.css' %}">
 </head>
+
 <body>
   <div class="portal">
     <h1 class="portal-title">PORTAL DE NOTICIAS</h1>
 
     {% for video in videos %}
     <article class="news-card">
+
+      <!-- HEADER -->
       <header class="news-header">
-        <span class="news-date">{{ video.fecha|date:"d-m-Y" }}</span>
-        <span class="news-title-header">{{ video.titulo_sin_autor }}</span>
+        <div class="news-meta">
+          <span class="news-date">{{ video.fecha|date:"d M Y" }}</span>
+          <span class="news-source">{{ video.canal }}</span>
+        </div>
+
+        <h2 class="news-title">
+          <a href="{{ video.url }}" target="_blank" rel="noopener noreferrer">
+            {{ video.titulo_sin_autor }}
+          </a>
+        </h2>
       </header>
+
+      <!-- BODY -->
       <div class="news-body">
-        <h2><a href="{{ video.url }}" target="_blank">Por: {{ video.canal }}</a></h2>
 
         {% for resumen in video.resumen_set.all %}
-          <p class="news-preview">{{ resumen.resumen_texto }}</p>
-          <button class="btn-leer-mas">▼ Leer más</button>
+          <div
+            class="news-preview"
+            data-date="{{ video.fecha|date:'Y-m-d' }}"
+          >
+            {{ resumen.resumen_texto }}
+          </div>
+
+          <button class="btn-leer-mas">
+            ▼ Leer más
+          </button>
         {% endfor %}
 
       </div>
+
     </article>
     {% endfor %}
 
   </div>
+
   <script src="{% static 'noticias/index.js' %}"></script>
 </body>
 </html>

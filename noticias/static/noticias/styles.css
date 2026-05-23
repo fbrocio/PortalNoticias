@@ -1,84 +1,244 @@
-/* === CONTENEDOR GENERAL === */
+body {
+  background-color: #dbe6fc;
+  background-image: url("/static/noticias/background2.png");
+  background-repeat: repeat;
+  background-attachment: scroll;
+  margin: 0;
+  position: relative;
+  min-height: 100vh;
+  display: flow-root;
+}
+
+body::before,
+body::after {
+  content: "";
+  pointer-events: none;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(241, 244, 255, 0.607),
+      rgba(243, 247, 255, 0.458)
+    );
+}
+
+body::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 0;
+  height: 320px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.5) 0,
+      rgba(255, 255, 255, 0.35) 120px,
+      rgba(255, 255, 255, 0) 100%
+    );
+}
+
+
+
 .portal {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 1rem;
-  font-family: sans-serif;
+  position: relative;
+  z-index: 1;
+  max-width: 960px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  font-family: system-ui, -apple-system, sans-serif;
 }
 
 .portal-title {
-  text-align: right;
-  font-size: 1.4rem;
-  font-weight: bold;
-  margin-bottom: 1.5rem;
+  text-align: left;
+
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+
+  color: #2563eb;
+
+  margin-bottom: 2.2rem;
+
+  text-transform: uppercase;
 }
 
-/* === TARJETA DE NOTICIA === */
+.portal-title::after {
+  content: "";
+  display: block;
+
+  width: 70px;
+  height: 4px;
+
+  margin-top: 0.5rem;
+
+  border-radius: 999px;
+
+  background: #2563eb;
+}
+
+/* CARD */
 .news-card {
+  background: white;
+  border-radius: 14px;
+  padding: 1.2rem;
   margin-bottom: 1.5rem;
-  border: 1px solid #ccc;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+  transition: transform 0.15s ease;
 }
 
-/* === CABECERA (fecha + título) === */
+.news-card:hover {
+  transform: translateY(-2px);
+}
+
+/* HEADER */
 .news-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #e8e8e8;
-  padding: 0.4rem 0.8rem;
-  font-size: 0.85rem;
-  color: #555;
+  font-family: system-ui, -apple-system, sans-serif;
+  flex-wrap: wrap; /* 🔑 clave */
 }
 
-.news-title-header {
-  font-weight: bold;
-  color: #222;
+.news-preview h2 + h2,
+.news-preview h2 + h3,
+.news-preview h3 + h2,
+.news-preview h3 + h3 {
+  margin-top: 1.4rem;
 }
 
-/* === CUERPO DE LA NOTICIA === */
-.news-body {
-  padding: 1rem;
-  background-color: #fff;
-  text-align: justify;
+/* Divider */
+.news-header::after {
+  content: "";
+  flex-basis: 100%;  
+  height: 1px;
+  background: #b3bfda;
+  margin-top: 0.6rem;
 }
 
-.news-body h2 {
-  font-size: 0.9rem;
-  font-weight: bold;
-  margin: 0 0 0.5rem;
+/* META */
+.news-meta {
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  color: #9ca3af;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
 }
 
-.news-body h2 a {
-  color: #000;
-  font-weight: normal;
+/* TÍTULO */
+.news-title {
+  flex: none;              /* no forzar expansión */
+  max-width: 65%;          /* limita ancho para que no invada todo */
+  margin-left: auto;       /* lo empuja a la derecha */
+  text-align: right;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.news-title a {
+  color: #111;
   text-decoration: none;
 }
 
-.news-body h3 {
-  font-size: 1rem;
-  font-weight: bold;
-  margin: 0 0 0.8rem;
+.news-title a:hover {
+  color: #2563eb;
 }
 
+.news-preview h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1.25;
+
+  margin-top: 0.1rem;
+  margin-bottom: 0.1rem;
+
+  color: #243447;
+}
+
+.news-preview h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.3;
+
+  margin-top: 0.1rem;
+  margin-bottom: 0.1rem;
+
+  color: #2f3e52;
+}
+
+/* BODY */
+.news-body {
+  border-top: 1px solid #b3bfda;
+  margin-top: 0.6rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  padding-top: 0.6rem;
+}
+
+/* TEXTO */
 .news-preview {
-  font-size: 0.9rem;
+  position: relative;
+  overflow: hidden;
+
+  text-align: justify;
   line-height: 1.6;
-  color: #333;
-  margin: 0;
+  text-justify: inter-word;
+  hyphens: none;
+
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.95rem;
+  color: #4b5563;
 }
 
-/* === BOTÓN "LEER MÁS" === */
+.news-preview.collapsed {
+  display: -webkit-box;
+  -webkit-line-clamp: var(--preview-lines, 4);
+  -webkit-box-orient: vertical;
+}
+
+/* Fade cuando colapsa */
+.news-preview.collapsed::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  pointer-events: none;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0),
+    rgba(255,255,255,1)
+  );
+}
+
+/* BOTÓN */
 .btn-leer-mas {
-  display: block;
-  margin-left: auto; /* empuja el botón a la derecha */
-  margin-top: 0.5rem;
-  background-color: #e8e8e8;
+  background: none;
   border: none;
-  padding: 0.3rem 0.7rem;
+
+  color: #2563eb;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-weight: 600;
+  font-size: 0.92rem;
+
   cursor: pointer;
-  font-size: 0.85rem;
+
+  padding: 0;
 }
 
 .btn-leer-mas:hover {
-  background-color: #d0d0d0;
+  text-decoration: underline;
 }
